@@ -11,11 +11,6 @@ setScreenColor(0x000000)
 
 
 def Watch_BG(center):
-    """Draws the background of the watch.
-
-    Args:
-        center (tuple): The center coordinates of the watch.
-    """
     r = 70
     M5Circle(center[0], center[1], r, 0xFBFBFB, 0xFBFBFB)
     for i in range(12):
@@ -29,13 +24,6 @@ def Watch_BG(center):
 
 
 def Watch_Needle(center, r, nowTime):
-    """Draws the needles of the watch.
-
-    Args:
-        center (tuple): The center coordinates of the watch.
-        r (int): The radius of the watch.
-        nowTime (list): The current time.
-    """
     M5Triangle(
         int(center[0] - r / 2 * math.sin(-(nowTime[0] %
             12 + nowTime[1] / 60) / 12 * pi * 2)),
@@ -62,24 +50,11 @@ def Watch_Needle(center, r, nowTime):
 
 
 def Watch(watchTime):
-    """Draws the watch.
-
-    Args:
-        watchTime (list): The current time.
-    """
     Watch_BG((245, 165))
     Watch_Needle((245, 165), 70, watchTime)
 
 
 def getRankSuffix(rank):
-    """Gets the suffix for a given rank.
-
-    Args:
-        rank (int): The rank to get the suffix for.
-
-    Returns:
-        str: The suffix for the given rank.
-    """
     if (rank % 10 == 1 and rank != 11):
         return "st"
     elif (rank % 10 == 2 and rank != 12):
@@ -91,25 +66,12 @@ def getRankSuffix(rank):
 
 
 def getMonth(m):
-    """Gets the month name for a given month number.
-
-    Args:
-        m (int): The month number to get the name for.
-
-    Returns:
-        str: The name of the month.
-    """
     month = ["January", "February", "March", "April", "May", "June",
              "July", "August", "September", "October", "November", "December"]
     return month[m - 1]
 
 
 def printDate(todayDate):
-    """Prints the date.
-
-    Args:
-        todayDate (list): The date to print.
-    """
     M5TextBox(30, 30, str(todayDate[1]) + getRankSuffix(int(todayDate[1])) + " " +
               getMonth(int(todayDate[0])), lcd.FONT_DejaVu24, 0xFFFFFF, rotate=0)
 
